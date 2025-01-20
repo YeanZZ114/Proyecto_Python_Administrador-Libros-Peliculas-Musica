@@ -26,13 +26,11 @@ def addElementSongs():
     saveAllSongs(data)
 
 def seeAllSongs():
-    with open('data/songs.json', 'r', encoding='utf-8') as file:
-        songs = json.loads(file)           
-        if isinstance(songs, list):
-            print(tabulate(songs, headers="keys", tablefmt="fancy_outline"))
-        else:
-            print("Error")
-
+    data = findAllSongs()
+    datamodify = []
+    for diccionario in data:
+           datamodify.append(diccionario)
+    print(tabulate(datamodify, headers='keys', tablefmt='grid', numalign="center"))
 
 with open('data/songs.json', "r", encoding="utf-8") as file:
     coleccion = json.load(file)

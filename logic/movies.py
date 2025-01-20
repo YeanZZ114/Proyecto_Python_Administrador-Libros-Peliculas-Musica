@@ -26,12 +26,11 @@ def addElementMovies():
     saveAllMovies(data)
 
 def seeAllMovies():
-    with open('data/movies.json', 'r', encoding='utf-8') as file:
-        movies = json.loads(file)           
-        if isinstance(movies, list):
-            print(tabulate(movies, headers="keys", tablefmt="fancy_outline"))
-        else:
-            print("Error")
+    data = findAllMovies()
+    datamodify = []
+    for diccionario in data:
+        datamodify.append(diccionario)
+    print(tabulate(datamodify, headers='keys', tablefmt='grid', numalign="center"))
 
 with open('data/movies.json', "r", encoding="utf-8") as file:
     colectionMovies = json.load(file)
