@@ -35,6 +35,11 @@ def seeAllBooks():
         else:
             print("Error")
 
+def searchBooksTitle():
+
+def searchBooksAuthor():
+
+def searchBooksGender():
 
 
 

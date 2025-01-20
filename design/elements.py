@@ -45,6 +45,21 @@ def allElements():
                         Selecciona una opción (1-4):
                           ''' ))
     return opc
+
+def searchElementType():
+        opc = int(input ('''
+                        ===========================================
+                                Buscar un Elemento
+                        ===========================================
+                        ¿Que deseas buscar?
+                        1. Buscar libro
+                        2. Buscar pelicula
+                        3. Buscar canción
+                        4. Regresar al Menú Principal
+                        ===========================================
+                        Selecciona una opción (1-4):
+ '''))
+        return opc
     
 def searchElements():
     opc = int(input ('''

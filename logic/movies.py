@@ -32,3 +32,9 @@ def seeAllMovies():
             print(tabulate(movies, headers="keys", tablefmt="fancy_outline"))
         else:
             print("Error")
+
+def searchMoviesTitle():
+
+def searchMoviesDirector():
+
+def searchMoviesGender():

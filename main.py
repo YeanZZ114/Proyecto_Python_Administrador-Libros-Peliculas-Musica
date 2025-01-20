@@ -47,7 +47,60 @@ if __name__=='__main__':
                             menuActive = True
                             while menuActive:
                                 try:
-                                    match searchElements():
+                                    match searchElementType():
+                                        case 1: 
+                                                searchActive = True
+                                                while searchActive:
+                                                    try:
+                                                        match searchElements():
+                                                            case 1:
+                                                                    searchBooksTitle()
+                                                            case 2:
+                                                                    searchBooksAuthor()
+                                                            case 3:
+                                                                    searchBooksGender()
+                                                            case 4: 
+                                                                    searchActive = False
+                                                    except Exception as e:        
+                                                            print(f"Error: {e}. Selecciona una opción correcta.")
+                                                            input("Presiona Enter para continuar...")
+                                        case 2:
+                                                searchActive = True
+                                                while searchActive:
+                                                    try:
+                                                        match searchElements():
+                                                            case 1:
+                                                                    searchMoviesTitle()
+                                                            case 2:
+                                                                    searchMoviesDirector()
+                                                            case 3:
+                                                                    searchMoviesGender()
+                                                            case 4: 
+                                                                    searchActive = False
+                                                    except Exception as e:        
+                                                            print(f"Error: {e}. Selecciona una opción correcta.")
+                                                            input("Presiona Enter para continuar...")
+                                        case 3:
+                                                searchActive = True
+                                                while searchActive:
+                                                    try:
+                                                        match searchElements():
+                                                            case 1:
+                                                                    searchSongsTitle()
+                                                            case 2:
+                                                                    searchSongsArtist()
+                                                            case 3:
+                                                                    searchSongsGender()
+                                                            case 4: 
+                                                                    searchActive = False
+                                                    except Exception as e:        
+                                                            print(f"Error: {e}. Selecciona una opción correcta.")
+                                                            input("Presiona Enter para continuar...")
+                                        case 4: searchActive = False
+                                                
+                                except Exception as e:        
+                                        print(f"Error: {e}. Selecciona una opción correcta.")
+                                        input("Presiona Enter para continuar...")   
                                               
                     case 4:
                             menuActive = True
