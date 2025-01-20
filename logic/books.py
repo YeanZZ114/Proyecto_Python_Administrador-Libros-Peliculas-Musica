@@ -1,4 +1,5 @@
 import json
+from tabulate import tabulate
     
 def findAllBooks():
     with open ("data/books.json", "r", encoding="utf-8" ) as file:
@@ -25,6 +26,16 @@ def addElementBooks():
     }
     data.append(sh)
     saveAllBooks(data)
+
+def seeAllBooks():
+    with open('data/books.json', 'r', encoding='utf-8') as file:
+        books = json.loads(file)           
+        if isinstance(books, list):
+            print(tabulate(books, headers="keys", tablefmt="fancy_outline"))
+        else:
+            print("Error")
+
+
 
 
 

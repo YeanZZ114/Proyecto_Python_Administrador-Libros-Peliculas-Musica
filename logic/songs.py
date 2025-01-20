@@ -1,4 +1,5 @@
 import json
+from tabulate import tabulate
 def findAllSongs():
     with open ("data/songs.json", "r", encoding="utf-8" ) as file:
         data = file.read()
@@ -14,12 +15,20 @@ def saveAllSongs(data):
 def addElementSongs():
     data = findAllSongs()
     songTitle = input("Ingrese el titulo de su cancion: ")
-    songDirector = input("Ingrese el/la artista de su cancion: ")
+    songArtist = input("Ingrese el/la artista de su cancion: ")
     songGender = input("Ingrese el genero de su cancion: ")
     jh = {
         "song_title" : songTitle,
-        "book_author" : songDirector,
-        "book_gender" : songGender
+        "song_artist" : songArtist,
+        "song_gender" : songGender
     }
     data.append(jh)
     saveAllSongs(data)
+
+def seeAllSongs():
+    with open('data/songs.json', 'r', encoding='utf-8') as file:
+        songs = json.loads(file)           
+        if isinstance(songs, list):
+            print(tabulate(songs, headers="keys", tablefmt="fancy_outline"))
+        else:
+            print("Error")

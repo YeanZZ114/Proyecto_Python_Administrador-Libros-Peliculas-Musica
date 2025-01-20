@@ -1,5 +1,5 @@
 import json
-
+from tabulate import tabulate 
 def findAllMovies():
     with open ("data/movies.json", "r", encoding="utf-8" ) as file:
         data = file.read()
@@ -18,9 +18,17 @@ def addElementMovies():
     movieDirector = input("Ingrese el/la director(a) de su pelicula: ")
     movieGender = input("Ingrese el genero de su pelicula: ")
     gh = {
-        "book_title" : movieTitle,
-        "book_author" : movieDirector,
-        "book_gender" : movieGender
+        "movie_title" : movieTitle,
+        "movie_director" : movieDirector,
+        "movie_gender" : movieGender
     }
     data.append(gh)
     saveAllMovies(data)
+
+def seeAllMovies():
+    with open('data/movies.json', 'r', encoding='utf-8') as file:
+        movies = json.loads(file)           
+        if isinstance(movies, list):
+            print(tabulate(movies, headers="keys", tablefmt="fancy_outline"))
+        else:
+            print("Error")

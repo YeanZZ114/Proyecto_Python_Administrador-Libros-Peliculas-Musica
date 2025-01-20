@@ -1,7 +1,7 @@
-from design.elements import mainMenu,addElement,allElements,searchElements,editElements,deleteElement,categoryElements,saveCollections
-from logic.books import addElementBooks
-from logic.movies import addElementMovies
-from logic.songs import addElementSongs
+from design.elements import *
+from logic.books import *
+from logic.movies import *
+from logic.songs import *
 
 
 if __name__=='__main__':
@@ -28,6 +28,49 @@ if __name__=='__main__':
                                 except Exception as e:        
                                         print(f"Error: {e}. Selecciona una opción correcta.")
                                         input("Presiona Enter para continuar...")
+                    case 2:
+                            menuActive = True
+                            while menuActive:
+                                try:
+                                    match allElements():
+                                        case 1: seeAllBooks()
+
+                                        case 2: seeAllMovies()
+
+                                        case 3: seeAllSongs()
+
+                                        case 4: menuActive = False
+                                except Exception as e:        
+                                        print(f"Error: {e}. Selecciona una opción correcta.")
+                                        input("Presiona Enter para continuar...")
+                    case 3:
+                            menuActive = True
+                            while menuActive:
+                                try:
+                                    match searchElements():
+                                              
+                    case 4:
+                            menuActive = True
+                            while menuActive:
+                                try:
+                                    match editElements():
+                            
+                    case 5:
+                            menuActive = True
+                            while menuActive:
+                                try:
+                                    match deleteElements():
+                    case 6:
+                            menuActive = True
+                            while menuActive:
+                                try:
+                                    match categoryElements():
+                    case 7: 
+                            menuActive = True
+                            while menuActive = True
+                                try:
+                                    match saveCollections():                                      
+                                        
                     case _:
                             print("Esta opcion no existe")                    
             except Exception as e:        
