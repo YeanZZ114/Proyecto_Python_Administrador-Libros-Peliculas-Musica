@@ -85,12 +85,28 @@ def editElements():
                         1. Editar Título
                         2. Editar Autor/Director/Artista
                         3. Editar Género
-                        4. Editar Valoración
+                        4. Editar Categoria
                         5. Regresar al Menú Principal
                         ===========================================
                         Selecciona una opción (1-5): 
                        '''))
     return opc
+
+def editElementsType():
+    opc = int(input('''
+                        ===========================================
+                                Editar un Elemento
+                        ===========================================
+                        ¿Qué tipo de cambio deseas realizar?
+                        1. Editar libro
+                        2. Editar canción
+                        3. Editar pelicula
+                        4. Regresar al Menú Principal
+                        ===========================================
+                        Selecciona una opción (1-4): 
+                       '''))
+    return opc
+
 
 def deleteElementType():
     opc = int(input('''
