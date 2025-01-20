@@ -33,55 +33,56 @@ def seeAllSongs():
         else:
             print("Error")
 
+
+with open('data/songs.json', "r", encoding="utf-8") as file:
+    coleccion = json.load(file)
+if not all(key in coleccion for key in ["books", "movies", "songs"]):
+                coleccion = {"books": [], "movies": [], "songs": []}
+
 def searchSongsTitle():
-    busqueda_titulo = input("Introduce el Título que deseas buscar: ").lower()
-    resultados = []
-    for categoria, items in coleccion.items():
+    searchTitle = input("Introduce el Título que deseas buscar: ").lower()
+    results = []
+    for category, items in coleccion.items():
             for item in items:
-                if busqueda_titulo in str(item.get("titulo", "")).lower():
-                        item_data = {
-                            "ID": item.get("id", ""),
-                            "Título": item.get("titulo", ""),
-                            "Autor/Director/Artista": item.get("autor", item.get("director", item.get("artista", ""))),
-                            "Género": item.get("genero", ""),
-                            "Valoración": item.get("valoracion", "N/A")
+                if searchTitle in str(item.get("song_title", "")).lower():
+                        itemData = {
+                            "Título": item.get("song_title", ""),
+                            "Autor/Director/Artista": item.get("song_artist", ""),
+                            "Género": item.get("song_gender", ""),
                         }
-                        resultados.append(item_data)
-    if resultados:
-                print(tabulate(resultados, headers="keys", tablefmt="grid"))
+                        results.append(itemData)
+    if results:
+                print(tabulate(results, headers="keys", tablefmt="grid"))
     else:
                 print("No se encontraron elementos que coincidan con tu búsqueda por título.")
 
 def searchSongsArtist():
-    busqueda_autor = input("Introduce el Autor/Director/Artista que deseas buscar: ").lower()
-    resultados = []
-    for categoria, items in coleccion.items():
+    searchArtist = input("Introduce el Autor/Director/Artista que deseas buscar: ").lower()
+    results = []
+    for category, items in coleccion.items():
         for item in items:
-            if busqueda_autor in str(item.get("autor", item.get("director", item.get("artista", "")))).lower():
-                        item_data = {
-                            "ID": item.get("id", ""),
-                            "Título": item.get("titulo", ""),
-                            "Autor/Director/Artista": item.get("autor", item.get("director", item.get("artista", ""))),
-                            "Género": item.get("genero", ""),
-                            "Valoración": item.get("valoracion", "N/A")
+            if searchArtist in str(item.get("song_artist", "")).lower():
+                        itemData = {
+                            "Título": item.get("song_title", ""),
+                            "Autor/Director/Artista": item.get("song_artist", ""),
+                            "Género": item.get("song_gender", ""),
                         }
-                        resultados.append(item_data)
-    if resultados:
-                print(tabulate(resultados, headers="keys", tablefmt="grid"))
+                        results.append(itemData)
+    if results:
+                print(tabulate(results, headers="keys", tablefmt="grid"))
     else:
                 print("No se encontraron elementos que coincidan con tu búsqueda por autor/director/artista.")
 
 def searchSongsGender():
     searchGender = input("Introduce el Género que deseas buscar: ").lower()
     results = []
-    for categoria, items in coleccion.items():
+    for category, items in coleccion.items():
         for item in items:
             if searchGender in str(item.get("song_gender", "")).lower():
                         itemData = {
                             "Título": item.get("song_title", ""),
                             "Autor/Director/Artista": item.get("song_artist"),
-                            "Género": item.get("genero", ""),
-                            "Valoración": item.get("valoracion", "N/A")
+                            "Género": item.get("song_gender", ""),
                         }
                         results.append(itemData)
     if results:

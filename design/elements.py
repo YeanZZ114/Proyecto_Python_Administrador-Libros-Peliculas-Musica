@@ -92,6 +92,21 @@ def editElements():
                        '''))
     return opc
 
+def deleteElementType():
+    opc = int(input('''
+                        ===========================================
+                                Eliminar un Elemento
+                        ===========================================
+                        ¿Que tipo de elemento desea eliminar?
+                        1. Libro
+                        2. Pelicula
+                        3. Canción
+                        4. Regresar al Menú Principal
+                        ===========================================
+                        Selecciona una opción (1-4):
+                         '''))
+    return opc
+
 def deleteElement():
     opc = int(input('''
                         ===========================================

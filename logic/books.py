@@ -28,19 +28,64 @@ def addElementBooks():
     saveAllBooks(data)
 
 def seeAllBooks():
-    with open('data/books.json', 'r', encoding='utf-8') as file:
-        books = json.loads(file)           
-        if isinstance(books, list):
-            print(tabulate(books, headers="keys", tablefmt="fancy_outline"))
-        else:
-            print("Error")
+    data = findAllBooks()
+    datamodify = []
+
+with open('data/books.json', "r", encoding="utf-8") as file:
+    colectionBooks = json.load(file)
+if not all(key in colectionBooks for key in ["books", "movies", "songs"]):
+                colectionBooks = {"books": [], "movies": [], "songs": []}
 
 def searchBooksTitle():
+    searchTitle = input("Introduce el Título que deseas buscar: ").lower()
+    results = []
+    for category , items in colectionBooks.items():
+            for item in items:
+                if searchTitle in str(item.get("book_title", "")).lower():
+                        itemData = {
+                            "Título": item.get("book_title", ""),
+                            "Autor/Director/Artista": item.get("book_author", ""),
+                            "Género": item.get("book_gender", ""),
+                        }
+                        results.append(itemData)
+    if results:
+                print(tabulate(results, headers="keys", tablefmt="grid"))
+    else:
+                print("No se encontraron elementos que coincidan con tu búsqueda por título.")
 
 def searchBooksAuthor():
+    searchAuthor = input("Introduce el Autor/Director/Artista que deseas buscar: ").lower()
+    results = []
+    for category, items in colectionBooks.items():
+        for item in items:
+            if searchAuthor in str(item.get("book_author", "")).lower():
+                        itemData = {
+                            "Título": item.get("book_title", ""),
+                            "Autor/Director/Artista": item.get("book_author", ""),
+                            "Género": item.get("book_gender", ""),
+                        }
+                        results.append(itemData)
+    if results:
+                print(tabulate(results, headers="keys", tablefmt="grid"))
+    else:
+                print("No se encontraron elementos que coincidan con tu búsqueda por autor/director/artista.")
 
 def searchBooksGender():
-
+    searchGender = input("Introduce el Género que deseas buscar: ").lower()
+    results = []
+    for category, items in colectionBooks.items():
+        for item in items:
+            if searchGender in str(item.get("book_gender", "")).lower():
+                        itemData = {
+                            "Título": item.get("book_title", ""),
+                            "Autor/Director/Artista": item.get("book_author"),
+                            "Género": item.get("book_gender", ""),
+                        }
+                        results.append(itemData)
+    if results:
+                print(tabulate(results, headers="keys", tablefmt="grid"))
+    else:
+                print("No se encontraron elementos que coincidan con tu búsqueda por género.")
 
 
 
