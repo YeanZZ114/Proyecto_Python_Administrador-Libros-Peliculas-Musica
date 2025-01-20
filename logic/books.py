@@ -34,15 +34,27 @@ def seeAllBooks():
            datamodify.append(diccionario)
     print(tabulate(datamodify, headers='keys', tablefmt='grid', numalign="center"))
 
+def listBooks():
+        books = findAllBooks("books")
+        books1 = []
+        for diccionario in books:
+              diccionario.pop("book_title")
+              diccionario.pop("book_author")
+              diccionario.pop("book_gender")
+              books1.append(diccionario)
+        print(tabulate(books1, headers="keys", tablefmt="grid"))
+
 with open('data/books.json', "r", encoding="utf-8") as file:
     colectionBooks = json.load(file)
 if not all(key in colectionBooks for key in ["books", "movies", "songs"]):
                 colectionBooks = {"books": [], "movies": [], "songs": []}
 
 def searchBooksTitle():
+    books = findAllBooks("books")
+    listBooks()
     searchTitle = input("Introduce el Título que deseas buscar: ").lower()
     results = []
-    for category , items in colectionBooks.items():
+    book for book in books :
             for item in items:
                 if searchTitle in str(item.get("book_title", "")).lower():
                         itemData = {
@@ -89,6 +101,8 @@ def searchBooksGender():
                 print(tabulate(results, headers="keys", tablefmt="grid"))
     else:
                 print("No se encontraron elementos que coincidan con tu búsqueda por género.")
+
+
 
 
 
