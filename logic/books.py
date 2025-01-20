@@ -147,3 +147,6 @@ def editBooksElementsCategory():
             print("La categoria ha sido actualizada.")
         else:
             print("La categoria no se encontró en los datos.")
+            
+
+

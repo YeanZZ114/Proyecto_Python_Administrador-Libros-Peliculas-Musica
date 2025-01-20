@@ -74,13 +74,56 @@ if __name__=='__main__':
                                                                     
                                                                     case 1: editBooksElementsTitle()
                                                                     
+                                                                    case 2 : editBooksElementsA_D_D()
+                                                                    
+                                                                    case 3: editBooksElementsGender()
+                                                                    
+                                                                    case 4: editBooksElementsCategory()
+                                                                    
                                                                     case 5: editActive = False
                                                         
                                                         except Exception as e:        
                                                                 print(f"Error: {e}. Selecciona una opción correcta.")
                                                                 input("Presiona Enter para continuar...")
                                                                
-                                                    
+                                        case 2:
+                                                editActive = True
+                                                while editActive:
+                                                        try:
+                                                            match editElements():
+                                                                    
+                                                                    case 1: editMoviesElementsTitle()
+                                                                    
+                                                                    case 2 : editMoviesElementsA_D_D()
+                                                                    
+                                                                    case 3: editMoviesElementsGender()
+                                                                    
+                                                                    case 4: editMoviesElementsCategory()
+                                                                    
+                                                                    case 5: editActive = False
+                                                        
+                                                        except Exception as e:        
+                                                                print(f"Error: {e}. Selecciona una opción correcta.")
+                                                                input("Presiona Enter para continuar...")             
+                                        case 3:
+                                                editActive = True
+                                                while editActive:
+                                                        try:
+                                                            match editElements():
+                                                                    
+                                                                    case 1: editSongsElementsTitle()
+                                                                    
+                                                                    case 2 : editSongsElementsA_D_D()
+                                                                    
+                                                                    case 3: editSongsElementsGender()
+                                                                    
+                                                                    case 4: editSongsElementsCategory()
+                                                                    
+                                                                    case 5: editActive = False
+                                                        
+                                                        except Exception as e:        
+                                                                print(f"Error: {e}. Selecciona una opción correcta.")
+                                                                input("Presiona Enter para continuar...")
                                         case 4: 
                                                 menuActive= False
                                 except Exception as e:        
