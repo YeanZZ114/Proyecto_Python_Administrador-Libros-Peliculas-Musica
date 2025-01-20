@@ -30,6 +30,9 @@ def addElementBooks():
 def seeAllBooks():
     data = findAllBooks()
     datamodify = []
+    for diccionario in data:
+           datamodify.append(diccionario)
+    print(tabulate(datamodify, headers='keys', tablefmt='grid', numalign="center"))
 
 with open('data/books.json', "r", encoding="utf-8") as file:
     colectionBooks = json.load(file)
