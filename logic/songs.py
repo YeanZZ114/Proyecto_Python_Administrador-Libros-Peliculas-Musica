@@ -1,5 +1,7 @@
 import json
 from tabulate import tabulate
+import os
+
 def findAllSongs():
     with open ("data/songs.json", "r", encoding="utf-8" ) as file:
         data = file.read()
@@ -17,10 +19,12 @@ def addElementSongs():
     songTitle = input("Ingrese el titulo de su cancion: ")
     songArtist = input("Ingrese el/la artista de su cancion: ")
     songGender = input("Ingrese el genero de su cancion: ")
+    songCategory = input("Ingrese la categoria de su cancion(Infantil, Folclor, Moderna...): ")
     jh = {
-        "song_title" : songTitle,
-        "song_artist" : songArtist,
-        "song_gender" : songGender
+        "titulo" : songTitle,
+        "autor/director/artista" : songArtist,
+        "genero" : songGender,
+        "categoria" : songCategory
     }
     data.append(jh)
     saveAllSongs(data)
@@ -32,60 +36,38 @@ def seeAllSongs():
            datamodify.append(diccionario)
     print(tabulate(datamodify, headers='keys', tablefmt='grid', numalign="center"))
 
-with open('data/songs.json', "r", encoding="utf-8") as file:
-    coleccion = json.load(file)
-if not all(key in coleccion for key in ["books", "movies", "songs"]):
-                coleccion = {"books": [], "movies": [], "songs": []}
+def listSongs():
+        songs = findAllSongs("songs")
+        songs1 = []
+        for diccionario in songs:
+              diccionario.pop("titulo")
+              diccionario.pop("autor/director/artista")
+              diccionario.pop("genero")
+              songs1.append(diccionario)
+        print(tabulate(songs1, headers="keys", tablefmt="grid"))
 
-def searchSongsTitle():
-    searchTitle = input("Introduce el Título que deseas buscar: ").lower()
-    results = []
-    for category, items in coleccion.items():
-            for item in items:
-                if searchTitle in str(item.get("song_title", "")).lower():
-                        itemData = {
-                            "Título": item.get("song_title", ""),
-                            "Autor/Director/Artista": item.get("song_artist", ""),
-                            "Género": item.get("song_gender", ""),
-                        }
-                        results.append(itemData)
-    if results:
-                print(tabulate(results, headers="keys", tablefmt="grid"))
-    else:
-                print("No se encontraron elementos que coincidan con tu búsqueda por título.")
-
-def searchSongsArtist():
-    searchArtist = input("Introduce el Autor/Director/Artista que deseas buscar: ").lower()
-    results = []
-    for category, items in coleccion.items():
-        for item in items:
-            if searchArtist in str(item.get("song_artist", "")).lower():
-                        itemData = {
-                            "Título": item.get("song_title", ""),
-                            "Autor/Director/Artista": item.get("song_artist", ""),
-                            "Género": item.get("song_gender", ""),
-                        }
-                        results.append(itemData)
-    if results:
-                print(tabulate(results, headers="keys", tablefmt="grid"))
-    else:
-                print("No se encontraron elementos que coincidan con tu búsqueda por autor/director/artista.")
-
-def searchSongsGender():
-    searchGender = input("Introduce el Género que deseas buscar: ").lower()
-    results = []
-    for category, items in coleccion.items():
-        for item in items:
-            if searchGender in str(item.get("song_gender", "")).lower():
-                        itemData = {
-                            "Título": item.get("song_title", ""),
-                            "Autor/Director/Artista": item.get("song_artist"),
-                            "Género": item.get("song_gender", ""),
-                        }
-                        results.append(itemData)
-    if results:
-                print(tabulate(results, headers="keys", tablefmt="grid"))
-    else:
-                print("No se encontraron elementos que coincidan con tu búsqueda por género.")
-
-
+def searchCategorySongs():
+       while(True):
+        file = 'data'
+        filesJson = ['Songs.json']
+        searchCategory = input("Introduce la categoria de las canciones que deseas buscar: ")
+        results = []
+        for archive in filesJson:
+            archivePath = os.path.join(file, archive)
+            if os.path.exists(archivePath, ):
+                with open(archivePath, 'r') as archivo:
+                    data = json.load(archivo)
+                results.extend([item for item in data if item['categoria'].lower() == searchCategory.lower()])
+            else:
+                print(f"El archivo {archive} no se encontró en la carpeta {file}.")
+        if results:
+            print(tabulate(results, headers="keys", tablefmt="grid"))
+        else:
+            print("No se encontraron resultados para esta categoria")
+        back = input(
+                "¿Deseas volver? (Si/No)"
+                )
+        if back.lower() == "si":
+                break
+        else:
+             continue

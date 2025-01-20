@@ -1,5 +1,6 @@
 import json
 from tabulate import tabulate 
+import os
 def findAllMovies():
     with open ("data/movies.json", "r", encoding="utf-8" ) as file:
         data = file.read()
@@ -17,10 +18,11 @@ def addElementMovies():
     movieTitle = input("Ingrese el titulo de su pelicula: ")
     movieDirector = input("Ingrese el/la director(a) de su pelicula: ")
     movieGender = input("Ingrese el genero de su pelicula: ")
+    movieCategory = input("Ingrese la categoria de su pelicula(Infantil, Antigua,+18 ,Culto...)")
     gh = {
-        "movie_title" : movieTitle,
-        "movie_director" : movieDirector,
-        "movie_gender" : movieGender
+        "titulo" : movieTitle,
+        "autor/director/artista" : movieDirector,
+        "genero" : movieGender
     }
     data.append(gh)
     saveAllMovies(data)
@@ -32,58 +34,38 @@ def seeAllMovies():
         datamodify.append(diccionario)
     print(tabulate(datamodify, headers='keys', tablefmt='grid', numalign="center"))
 
-with open('data/movies.json', "r", encoding="utf-8") as file:
-    colectionMovies = json.load(file)
-if not all(key in colectionMovies for key in ["books", "movies", "songs"]):
-                colectionMovies = {"books": [], "movies": [], "songs": []}
-
-def searchMoviesTitle():
-    searchTitle = input("Introduce el Título que deseas buscar: ").lower()
-    results = []
-    for category, items in colectionMovies.items():
-            for item in items:
-                if searchTitle in str(item.get("movie_title", "")).lower():
-                        itemData = {
-                            "Título": item.get("movie_title", ""),
-                            "Autor/Director/Artista": item.get("movie_director", ""),
-                            "Género": item.get("movie_gender", ""),
-                        }
-                        results.append(itemData)
-    if results:
-                print(tabulate(results, headers="keys", tablefmt="grid"))
-    else:
-                print("No se encontraron elementos que coincidan con tu búsqueda por título.")
-
-def searchMoviesDirector():
-    searchDirector = input("Introduce el Autor/Director/Artista que deseas buscar: ").lower()
-    results = []
-    for category, items in colectionMovies.items():
-        for item in items:
-            if searchDirector in str(item.get("movie_director", "")).lower():
-                        itemData = {
-                            "Título": item.get("movie_title", ""),
-                            "Autor/Director/Artista": item.get("movie_director", ""),
-                            "Género": item.get("movie_gender", ""),
-                        }
-                        results.append(itemData)
-    if results:
-                print(tabulate(results, headers="keys", tablefmt="grid"))
-    else:
-                print("No se encontraron elementos que coincidan con tu búsqueda por autor/director/artista.")
-
-def searchMoviesGender():
-    searchGender = input("Introduce el Género que deseas buscar: ").lower()
-    results = []
-    for category, items in colectionMovies.items():
-        for item in items:
-            if searchGender in str(item.get("moovie_gender", "")).lower():
-                        itemData = {
-                            "Título": item.get("movie_title", ""),
-                            "Autor/Director/Artista": item.get("movie_director"),
-                            "Género": item.get("movie_gender", ""),
-                        }
-                        results.append(itemData)
-    if results:
-                print(tabulate(results, headers="keys", tablefmt="grid"))
-    else:
-                print("No se encontraron elementos que coincidan con tu búsqueda por género.")      
+def listMovies():
+        movies = findAllMovies("movies")
+        movies1 = []
+        for diccionario in movies:
+              diccionario.pop("titulo")
+              diccionario.pop("autor/director/artista")
+              diccionario.pop("genero")
+              movies1.append(diccionario)
+        print(tabulate(movies1, headers="keys", tablefmt="grid"))
+        
+def searchCategoryMovies():
+       while(True):
+        file = 'data'
+        filesJson = ['movies.json']
+        searchCategory = input("Introduce la categoria de las peliculas que deseas buscar: ")
+        results = []
+        for archive in filesJson:
+            archivePath = os.path.join(file, archive)
+            if os.path.exists(archivePath, ):
+                with open(archivePath, 'r') as archivo:
+                    data = json.load(archivo)
+                results.extend([item for item in data if item['categoria'].lower() == searchCategory.lower()])
+            else:
+                print(f"El archivo {archive} no se encontró en la carpeta {file}.")
+        if results:
+            print(tabulate(results, headers="keys", tablefmt="grid"))
+        else:
+            print("No se encontraron resultados para esta categoria")
+        back = input(
+                "¿Deseas volver? (Si/No)"
+                )
+        if back.lower() == "si":
+                break
+        else:
+             continue

@@ -51,9 +51,10 @@ if __name__=='__main__':
                                     match searchElements():
                                         case 1:
                                                 searchAllsTitle()
-                                        #case 2:
-                                        #case 3:
-
+                                        case 2:
+                                                searchAllsA_A_D()
+                                        case 3:
+                                                searchAllGender()
                                         case 4: searchActive = False
                                                 
                                 except Exception as e:        
@@ -77,11 +78,11 @@ if __name__=='__main__':
                                 try:
                                     match categoryElements():
                                         case 1:
-                                                seeAllBooks()
+                                                searchCategoryBooks()
                                         case 2:
-                                                seeAllMovies()
+                                                searchCategoryMovies()
                                         case 3:
-                                                seeAllSongs()
+                                                searchCategorySongs()
                                         case 4:
                                                 menuActive = False
                                 except Exception as e:        

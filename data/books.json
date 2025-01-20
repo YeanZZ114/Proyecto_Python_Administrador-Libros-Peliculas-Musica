@@ -1,7 +1,8 @@
 [
     {
-        "book_title": "it",
-        "book_author": "stephen_king",
-        "book_gender": "terror"
+        "titulo": "it",
+        "autor/director/artista": "stephen_king",
+        "genero": "terror",
+        "categoria": "novela"
     }
 ]

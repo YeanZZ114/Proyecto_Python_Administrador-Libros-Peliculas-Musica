@@ -1,7 +1,8 @@
 [
     {
-        "movie_title" :"fight_club",
-        "movie_director":"david_fincher",
-        "movie_gender" :"accion"
+        "titulo" :"fight_club",
+        "autor/director/artista":"david_fincher",
+        "genero" :"accion",
+        "categoria" : "culto"
     }
 ]

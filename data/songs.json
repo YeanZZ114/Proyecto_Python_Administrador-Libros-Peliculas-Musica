@@ -1,7 +1,13 @@
 [
     {
-        "song_title":"cirugia",
-        "song_artist":"dillom",
-        "song_gender":"indie"
+        "titulo": "cirugia",
+        "autor/director/artista": "dillom",
+        "genero": "indie"
+    },
+    {
+        "titulo": "mapale",
+        "autor/director/artista": "costeña random",
+        "genero": "mapale",
+        "categoria": "folclor"
     }
 ]
