@@ -13,8 +13,7 @@ def saveAllMovies(data):
         file.write(convertJSON)
         return "se modifico el archivo movies.json"
     
-def addElementMovies():
-    data = findAllMovies()
+def addElementMovies(movies, collections):
     movieTitle = input("Ingrese el titulo de su pelicula: ")
     movieDirector = input("Ingrese el/la director(a) de su pelicula: ")
     movieGender = input("Ingrese el genero de su pelicula: ")
@@ -24,9 +23,8 @@ def addElementMovies():
         "autor/director/artista" : movieDirector,
         "genero" : movieGender
     }
-    data.append(gh)
-    saveAllMovies(data)
-
+    movies.append(gh)
+    collections["movies"].append(gh)
 def seeAllMovies():
     data = findAllMovies()
     datamodify = []

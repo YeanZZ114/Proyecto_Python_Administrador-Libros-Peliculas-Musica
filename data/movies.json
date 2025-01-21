@@ -1,8 +1,8 @@
 [
     {
-        "titulo" :"fight_club",
-        "autor/director/artista":"david_fincher",
-        "genero" :"accion",
-        "categoria" : "culto"
+        "titulo": "fight_club",
+        "autor/director/artista": "david_fincher",
+        "genero": "accion",
+        "categoria": "culto"
     }
 ]

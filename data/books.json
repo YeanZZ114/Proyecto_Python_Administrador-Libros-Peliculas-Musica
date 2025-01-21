@@ -4,5 +4,11 @@
         "autor/director/artista": "stephen_king",
         "genero": "terror",
         "categoria": "novela"
+    },
+    {
+        "titulo": "kjhgfd",
+        "autor/director/artista": "kjhgf",
+        "genero": "kjhgfds",
+        "categoria": "jh"
     }
 ]

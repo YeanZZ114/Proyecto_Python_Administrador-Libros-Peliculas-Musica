@@ -3,7 +3,20 @@ from logic.books import *
 from logic.movies import *
 from logic.songs import *
 from logic.all import *
+from logic.saveAndLoad import *
 import json 
+
+
+books = []
+songs = []
+movies = []
+
+collections = {
+      "books": [],
+      "songs": [],
+      "movies": []
+}
+
 
 if __name__=='__main__':
     isActive = True
@@ -19,11 +32,11 @@ if __name__=='__main__':
                             while menuActive:
                                 try:
                                     match addElement():
-                                        case 1: addElementBooks()
+                                        case 1: addElementBooks(books, collections)
 
-                                        case 2: addElementMovies()
+                                        case 2: addElementMovies(movies, collections)
 
-                                        case 3: addElementSongs()
+                                        case 3: addElementSongs(songs, collections)
                                         
                                         case 4: menuActive = False
                                 except Exception as e:        
@@ -151,11 +164,19 @@ if __name__=='__main__':
                                 except Exception as e:        
                                     print(f"Error: {e}. Selecciona una opción correcta.")
                                     input("Presiona Enter para continuar...")
-                    #case 7: 
-                     #       menuActive = True
-                      #      while menuActive = True
-                       #         try:
-                        #            match saveCollections():                                      
+                    case 7: 
+                            menuActive = True
+                            while menuActive:
+                                    opc = saveCollections()
+                                    match opc:
+                                        case 1:
+                                                save(books, songs, movies, collections)
+                                        case 2:
+                                                pass
+                                        case 3:
+                                                input('Press Enter....')
+                                                menuActive = False
+                                                           
                                         
                     case _:
                             print("Esta opcion no existe")                    

@@ -14,8 +14,7 @@ def saveAllBooks(data):
         file.write(convertJSON)
         return "se modifico el archivo books.json"
 
-def addElementBooks():
-    data = findAllBooks()
+def addElementBooks(books, collections):
     bookTitle = input("Ingrese el titulo de su libro: ")
     bookDirector = input("Ingrese el/la autor(a) de su libro: ")
     bookGender = input("Ingrese el genero de su libro: ")
@@ -26,9 +25,8 @@ def addElementBooks():
         "genero" : bookGender,
         "categoria" : bookCategory
     }
-    data.append(sh)
-    saveAllBooks(data)
-
+    books.append(sh)
+    collections["books"].append(sh)
 def seeAllBooks():
     data = findAllBooks()
     datamodify = []

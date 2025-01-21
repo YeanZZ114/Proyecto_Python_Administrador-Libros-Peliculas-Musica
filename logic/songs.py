@@ -14,8 +14,7 @@ def saveAllSongs(data):
         file.write(convertJSON)
         return "se modifico el archivo songs.json"
 
-def addElementSongs():
-    data = findAllSongs()
+def addElementSongs(songs, collections):
     songTitle = input("Ingrese el titulo de su cancion: ")
     songArtist = input("Ingrese el/la artista de su cancion: ")
     songGender = input("Ingrese el genero de su cancion: ")
@@ -26,8 +25,8 @@ def addElementSongs():
         "genero" : songGender,
         "categoria" : songCategory
     }
-    data.append(jh)
-    saveAllSongs(data)
+    songs.append(jh)
+    collections["songs"].append(jh)
 
 def seeAllSongs():
     data = findAllSongs()
