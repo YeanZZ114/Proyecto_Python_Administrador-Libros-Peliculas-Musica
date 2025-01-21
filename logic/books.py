@@ -19,7 +19,13 @@ def addElementBooks(books, collections):
     bookDirector = input("Ingrese el/la autor(a) de su libro: ")
     bookGender = input("Ingrese el genero de su libro: ")
     bookCategory = input("Ingrese la categoria de su libro(Novela, Biografia, Poesia...)")
-    bookID = input("Ingrese un numero de identificacion de 4 digitos unico para su libro")
+    while True:
+        bookID = input("Ingrese un numero de identificacion de 4 digitos unico para su libro: ")
+        if bookID.isdigit() and len(bookID) == 4:
+            break
+        else:
+            print("El ID debe ser un número de 4 dígitos. Intente nuevamente.")
+
     sh = {
         "titulo" : bookTitle,
         "autor/director/artista" : bookDirector,
@@ -91,6 +97,10 @@ def editBooksElementsTitle():
             print("El título ha sido actualizado.")
         else:
             print("El título no se encontró en los datos.")
+        continue1 = input("¿Deseas continuar editando titulos? (Si/No): ").lower()
+        if continue1 != 'si':
+            print("Saliendo del editor de titulos.")
+            break
 #definimos la funcion para poder editar los autores de los libros               
 def editBooksElementsA_D_D():
     while(True):
@@ -110,6 +120,10 @@ def editBooksElementsA_D_D():
             print("El autor/director/artista ha sido actualizado.")
         else:
             print("El autor/director/artista no se encontró en los datos.")
+        continue1 = input("¿Deseas continuar editando autor/director/artista? (Si/No): ").lower()
+        if continue1 != 'si':
+            print("Saliendo del editor de autor/director/artista.")
+            break
  #definimos la funcion para poder editar los generos de los libros              
 def editBooksElementsGender():
     while(True):
@@ -129,6 +143,10 @@ def editBooksElementsGender():
             print("El genero ha sido actualizado.")
         else:
             print("El genero no se encontró en los datos.")
+        continue1 = input("¿Deseas continuar editando generos? (Si/No): ").lower()
+        if continue1 != 'si':
+            print("Saliendo del editor de generos.")
+            break
 #definimos la funcion para poder editar las categorias de los libros   
 def editBooksElementsCategory():
     while(True):
@@ -148,24 +166,44 @@ def editBooksElementsCategory():
             print("La categoria ha sido actualizada.")
         else:
             print("La categoria no se encontró en los datos.")
+        continue1 = input("¿Deseas continuar editando categorías? (Si/No): ").lower()
+        if continue1 != 'si':
+            print("Saliendo del editor de categorías.")
+            break
  #definimos la variable para poder eliminar elementos segun su titulo           
-def removeBooksTitle():
-    with open("data/books.json", "r", encoding="utf-8") as file:
-        data = json.load(file)
-        print (tabulate(data, headers='keys', tablefmt='grid'))
-    titleToRemove = input("¿Qué título deseas eliminar?: ")
-    data = [book for book in data if book.get('titulo') != titleToRemove]
-    with open("data/books.json", "w", encoding="utf-8") as file:
-        json.dump(data, file, indent=4, ensure_ascii=False)
-    print(f"El libro con el título '{titleToRemove}' ha sido eliminado.")
 
+def removeBooksTitle():
+ while True:
+        with open("data/books.json", "r", encoding="utf-8") as file:
+            data = json.load(file)
+        print(tabulate(data, headers='keys', tablefmt='grid'))
+        titleToRemove = input("¿Qué título de libro deseas eliminar?: ")
+        updatedData = [book for book in data if book.get('titulo') != titleToRemove]
+        if len(updatedData) != len(data):
+            with open("data/books.json", "w", encoding="utf-8") as file:
+                json.dump(updatedData, file, indent=4, ensure_ascii=False)
+            print(f"El libro con el título '{titleToRemove}' ha sido eliminado.")
+        else:
+            print(f"No se encontró ningún libro con el título '{titleToRemove}'.")
+        continuar = input("¿Deseas continuar eliminando libros? (Si/No): ").lower()
+        if continuar != 'si':
+            print("Saliendo del eliminador de libros.")
+            break
 def removeBooksID():
-    with open("data/books.json", "r", encoding="utf-8") as file:
-        data = json.load(file)
-        print (tabulate(data, headers='keys', tablefmt='grid'))
-    titleToRemove = input("¿Qué título deseas eliminar?: ")
-    data = [book for book in data if book.get('ID') != titleToRemove]
-    with open("data/books.json", "w", encoding="utf-8") as file:
-        json.dump(data, file, indent=4, ensure_ascii=False)
-    print(f"El libro con el ID '{titleToRemove}' ha sido eliminado.")
+    while True:
+        with open("data/books.json", "r", encoding="utf-8") as file:
+            data = json.load(file)        
+        print(tabulate(data, headers='keys', tablefmt='grid'))        
+        idToRemove = input("¿Qué ID de libro deseas eliminar?: ")
+        updated_data = [book for book in data if str(book.get('ID')) != idToRemove]
+        if len(updated_data) != len(data):
+            with open("data/books.json", "w", encoding="utf-8") as file:
+                json.dump(updated_data, file, indent=4, ensure_ascii=False)
+            print(f"El libro con el ID '{idToRemove}' ha sido eliminado.")
+        else:
+            print(f"No se encontró ningún libro con el ID '{idToRemove}'.")
+        continuar = input("¿Deseas continuar eliminando libros? (Si/No): ").lower()
+        if continuar != 'si':
+            print("Saliendo del eliminador de libros.")
+            break
 

@@ -18,7 +18,13 @@ def addElementMovies(movies, collections):
     movieDirector = input("Ingrese el/la director(a) de su pelicula: ")
     movieGender = input("Ingrese el genero de su pelicula: ")
     movieCategory = input("Ingrese la categoria de su pelicula(Infantil, Antigua,+18 ,Culto...)")
-    movieID = input("Ingrese un numero de identificacion de 4 digitos unico para su pelicula")
+    while True:
+        movieID = input("Ingrese un numero de identificacion de 4 digitos unico para su libro: ")
+        if movieID.isdigit() and len(movieID) == 4:
+            break
+        else:
+            print("El ID debe ser un número de 4 dígitos. Intente nuevamente.")
+
     gh = {
         "titulo" : movieTitle,
         "autor/director/artista" : movieDirector,
@@ -89,7 +95,11 @@ def editMoviesElementsTitle():
             print("El título ha sido actualizado.")
         else:
             print("El título no se encontró en los datos.")
-            
+        continue1 = input("¿Deseas continuar editando titulos? (Si/No): ").lower()
+        if continue1 != 'si':
+            print("Saliendo del editor de titulos.")
+            break
+
 def editMoviesElementsA_D_D():
     while(True):
         with open ("data/movies.json", "r", encoding="utf-8" ) as file:
@@ -108,7 +118,10 @@ def editMoviesElementsA_D_D():
             print("El autor/director/artista ha sido actualizado.")
         else:
             print("El autor/director/artista no se encontró en los datos.")
-            
+        continue1 = input("¿Deseas continuar editando autor/director/artista? (Si/No): ").lower()
+        if continue1 != 'si':
+            print("Saliendo del editor de autor/director/artista.")
+            break    
 def editMoviesElementsGender():
     while(True):
         with open ("data/movies.json", "r", encoding="utf-8" ) as file:
@@ -127,7 +140,10 @@ def editMoviesElementsGender():
             print("El genero ha sido actualizado.")
         else:
             print("El genero no se encontró en los datos.")
-
+        continue1 = input("¿Deseas continuar editando generos? (Si/No): ").lower()
+        if continue1 != 'si':
+            print("Saliendo del editor de generos.")
+            break
 def editMoviesElementsCategory():
     while(True):
         with open ("data/movies.json", "r", encoding="utf-8" ) as file:
@@ -146,23 +162,42 @@ def editMoviesElementsCategory():
             print("La categoria ha sido actualizada.")
         else:
             print("La categoria no se encontró en los datos.")
-
+        continue1 = input("¿Deseas continuar editando categorías? (Si/No): ").lower()
+        if continue1 != 'si':
+            print("Saliendo del editor de categorías.")
+            break
 def removeMoviesTitle():
-    with open("data/movies.json", "r", encoding="utf-8") as file:
-        data = json.load(file)
-        print (tabulate(data, headers='keys', tablefmt='grid'))
-    titleToRemove = input("¿Qué título deseas eliminar?: ")
-    data = [book for book in data if book.get('titulo') != titleToRemove]
-    with open("data/movies.json", "w", encoding="utf-8") as file:
-        json.dump(data, file, indent=4, ensure_ascii=False)
-    print(f"La pelicula con el título '{titleToRemove}' ha sido eliminada.")
+    while True:
+        with open("data/movies.json", "r", encoding="utf-8") as file:
+            data = json.load(file)        
+        print(tabulate(data, headers='keys', tablefmt='grid'))        
+        titleToRemove = input("¿Qué título de película deseas eliminar?: ")
+        updated_data = [movie for movie in data if movie.get('titulo') != titleToRemove]      
+        if len(updated_data) != len(data):
+            with open("data/movies.json", "w", encoding="utf-8") as file:
+                json.dump(updated_data, file, indent=4, ensure_ascii=False)
+            print(f"La película con el título '{titleToRemove}' ha sido eliminada.")
+        else:
+            print(f"No se encontró ninguna película con el título '{titleToRemove}'.")
+        continuar = input("¿Deseas continuar eliminando películas? (Si/No): ").lower()
+        if continuar != 'si':
+            print("Saliendo del eliminador de películas.")
+            break
 
 def removeMoviesID():
-    with open("data/movies.json", "r", encoding="utf-8") as file:
-        data = json.load(file)
-        print (tabulate(data, headers='keys', tablefmt='grid'))
-    titleToRemove = input("¿Qué ID deseas eliminar?: ")
-    data = [book for book in data if book.get('ID') != titleToRemove]
-    with open("data/movies.json", "w", encoding="utf-8") as file:
-        json.dump(data, file, indent=4, ensure_ascii=False)
-    print(f"La pelicula con el ID '{titleToRemove}' ha sido eliminada.")
+    while True:
+        with open("data/movies.json", "r", encoding="utf-8") as file:
+            data = json.load(file)
+        print(tabulate(data, headers='keys', tablefmt='grid'))
+        idToRemove = input("¿Qué ID de película deseas eliminar?: ")
+        updated_data = [movie for movie in data if str(movie.get('ID')) != idToRemove]
+        if len(updated_data) != len(data):
+            with open("data/movies.json", "w", encoding="utf-8") as file:
+                json.dump(updated_data, file, indent=4, ensure_ascii=False)
+            print(f"La película con el ID '{idToRemove}' ha sido eliminada.")
+        else:
+            print(f"No se encontró ninguna película con el ID '{idToRemove}'.")
+        continuar = input("¿Deseas continuar eliminando películas? (Si/No): ").lower()
+        if continuar != 'si':
+            print("Saliendo del eliminador de películas.")
+            break

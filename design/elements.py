@@ -100,8 +100,8 @@ def editElementsType():
                         ===========================================
                         ¿Qué tipo de cambio deseas realizar?
                         1. Editar libro
-                        2. Editar canción
-                        3. Editar pelicula
+                        2. Editar pelicula
+                        3. Editar cancion
                         4. Regresar al Menú Principal
                         ===========================================
                         Selecciona una opción (1-4): 

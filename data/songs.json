@@ -3,6 +3,7 @@
         "titulo": "cirugia",
         "autor/director/artista": "dillom",
         "genero": "indie",
+        "categoria": "moderna",
         "ID": "0003"
     },
     {
@@ -10,6 +11,6 @@
         "autor/director/artista": "costeña random",
         "genero": "mapale",
         "categoria": "folclor",
-        "ID": "0004"
+        "ID":"0004"
     }
 ]

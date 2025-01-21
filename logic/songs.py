@@ -19,7 +19,13 @@ def addElementSongs(songs, collections):
     songArtist = input("Ingrese el/la artista de su cancion: ")
     songGender = input("Ingrese el genero de su cancion: ")
     songCategory = input("Ingrese la categoria de su cancion(Infantil, Folclor, Moderna...): ")
-    songID = input("Ingrese un numero de identificacion de 4 digitos unico para su cancion")
+    while True:
+        songID = input("Ingrese un numero de identificacion de 4 digitos unico para su libro: ")
+        if songID.isdigit() and len(songID) == 4:
+            break
+        else:
+            print("El ID debe ser un número de 4 dígitos. Intente nuevamente.")
+
     jh = {
         "titulo" : songTitle,
         "autor/director/artista" : songArtist,
@@ -50,7 +56,7 @@ def listSongs():
 def searchCategorySongs():
        while(True):
         file = 'data'
-        filesJson = ['Songs.json']
+        filesJson = ['songs.json']
         searchCategory = input("Introduce la categoria de las canciones que deseas buscar: ")
         results = []
         for archive in filesJson:
@@ -92,7 +98,10 @@ def editSongsElementsTitle():
             print("El título ha sido actualizado.")
         else:
             print("El título no se encontró en los datos.")
-            
+        continue1 = input("¿Deseas continuar editando titulos? (Si/No): ").lower()
+        if continue1 != 'si':
+            print("Saliendo del editor de titulos.")
+            break    
 def editSongsElementsA_D_D():
     while(True):
         with open ("data/songs.json", "r", encoding="utf-8" ) as file:
@@ -111,7 +120,10 @@ def editSongsElementsA_D_D():
             print("El autor/director/artista ha sido actualizado.")
         else:
             print("El autor/director/artista no se encontró en los datos.")
-            
+        continue1 = input("¿Deseas continuar editando autor/director/artista? (Si/No): ").lower()
+        if continue1 != 'si':
+            print("Saliendo del editor de autor/director/artista.")
+            break       
 def editSongsElementsGender():
     while(True):
         with open ("data/songs.json", "r", encoding="utf-8" ) as file:
@@ -130,7 +142,10 @@ def editSongsElementsGender():
             print("El genero ha sido actualizado.")
         else:
             print("El genero no se encontró en los datos.")
-
+        continue1 = input("¿Deseas continuar editando generos? (Si/No): ").lower()
+        if continue1 != 'si':
+            print("Saliendo del editor de generos.")
+            break
 def editSongsElementsCategory():
     while(True):
         with open ("data/songs.json", "r", encoding="utf-8" ) as file:
@@ -149,23 +164,43 @@ def editSongsElementsCategory():
             print("La categoria ha sido actualizada.")
         else:
             print("La categoria no se encontró en los datos.")
-        
+        continue1 = input("¿Deseas continuar editando categorías? (Si/No): ").lower()
+        if continue1 != 'si':
+            print("Saliendo del editor de categorías.")
+            break
+
 def removeSongsTitle():
-    with open("data/songs.json", "r", encoding="utf-8") as file:
-        data = json.load(file)
-        print (tabulate(data, headers='keys', tablefmt='grid'))
-    titleToRemove = input("¿Qué título deseas eliminar?: ")
-    data = [book for book in data if book.get('titulo') != titleToRemove]
-    with open("data/songs.json", "w", encoding="utf-8") as file:
-        json.dump(data, file, indent=4, ensure_ascii=False)
-    print(f"La cancion con el título '{titleToRemove}' ha sido eliminada.")
+    while True:
+        with open("data/songs.json", "r", encoding="utf-8") as file:
+            data = json.load(file)        
+        print(tabulate(data, headers='keys', tablefmt='grid'))        
+        titleToRemove = input("¿Qué título deseas eliminar?: ")
+        updatedData = [song for song in data if song.get('titulo') != titleToRemove]
+        if len(updatedData) != len(data):
+            with open("data/songs.json", "w", encoding="utf-8") as file:
+                json.dump(updatedData, file, indent=4, ensure_ascii=False)
+            print(f"La canción con el título '{titleToRemove}' ha sido eliminada.")
+        else:
+            print(f"No se encontró ninguna canción con el título '{titleToRemove}'.")
+        continuar = input("¿Deseas continuar eliminando canciones? (Si/No): ").lower()
+        if continuar != 'si':
+            print("Saliendo del eliminador de canciones.")
+            break
 
 def removeSongsID():
-    with open("data/songs.json", "r", encoding="utf-8") as file:
-        data = json.load(file)
-        print (tabulate(data, headers='keys', tablefmt='grid'))
-    titleToRemove = input("¿Qué ID deseas eliminar?: ")
-    data = [book for book in data if book.get('ID') != titleToRemove]
-    with open("data/songs.json", "w", encoding="utf-8") as file:
-        json.dump(data, file, indent=4, ensure_ascii=False)
-    print(f"La cancion con el ID'{titleToRemove}' ha sido eliminada.")
+    while True:
+        with open("data/songs.json", "r", encoding="utf-8") as file:
+            data = json.load(file)       
+        print(tabulate(data, headers='keys', tablefmt='grid'))        
+        idToRemove = input("¿Qué ID de canción deseas eliminar?: ")
+        updated_data = [song for song in data if str(song.get('ID')) != idToRemove]
+        if len(updated_data) != len(data):
+            with open("data/songs.json", "w", encoding="utf-8") as file:
+                json.dump(updated_data, file, indent=4, ensure_ascii=False)
+            print(f"La canción con el ID '{idToRemove}' ha sido eliminada.")
+        else:
+            print(f"No se encontró ninguna canción con el ID '{idToRemove}'.")
+        continuar = input("¿Deseas continuar eliminando canciones? (Si/No): ").lower()
+        if continuar != 'si':
+            print("Saliendo del eliminador de canciones.")
+            break
