@@ -156,7 +156,7 @@ if __name__=='__main__':
                                                                 case 1: 
                                                                     removeBooksTitle()
                                                                 case 2:
-                                                                    pass
+                                                                    removeBooksID()
                                                                 case 3:
                                                                     deleteActive = False
                                                 except Exception as e:        
@@ -170,7 +170,7 @@ if __name__=='__main__':
                                                                         case 1: 
                                                                                 removeMoviesTitle()
                                                                         case 2:
-                                                                                pass
+                                                                                removeMoviesID()
                                                                         case 3:
                                                                                 deleteActive = False
                                                         except Exception as e:        
@@ -184,7 +184,7 @@ if __name__=='__main__':
                                                                         case 1: 
                                                                                 removeSongsTitle()
                                                                         case 2:
-                                                                                pass
+                                                                                removeSongsID()
                                                                         case 3:
                                                                                 deleteActive = False
                                                         except Exception as e:        

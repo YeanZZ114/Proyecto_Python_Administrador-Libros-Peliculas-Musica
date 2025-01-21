@@ -4,26 +4,30 @@
             "titulo": "it",
             "autor/director/artista": "stephen_king",
             "genero": "terror",
-            "categoria": "novela"
+            "categoria": "novela",
+            "ID": "0001"
         },
         {
             "titulo": "kjhgfd",
             "autor/director/artista": "kjhgf",
             "genero": "kjhgfds",
-            "categoria": "jh"
+            "categoria": "jh",
+            "ID": "0002"
         }
     ],
     "songs": [
         {
             "titulo": "cirugia",
             "autor/director/artista": "dillom",
-            "genero": "indie"
+            "genero": "indie",
+            "ID": "0003"
         },
         {
             "titulo": "mapale",
             "autor/director/artista": "costeña random",
             "genero": "mapale",
-            "categoria": "folclor"
+            "categoria": "folclor",
+            "ID":"0004"
         }
     ],
     "movies": [
@@ -31,7 +35,8 @@
             "titulo": "fight_club",
             "autor/director/artista": "david_fincher",
             "genero": "accion",
-            "categoria": "culto"
+            "categoria": "culto",
+            "ID":"0005"
         }
     ]
 }

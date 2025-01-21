@@ -3,12 +3,14 @@
         "titulo": "it",
         "autor/director/artista": "stephen_king",
         "genero": "terror",
-        "categoria": "novela"
+        "categoria": "novela",
+        "ID": "0001"
     },
     {
         "titulo": "kjhgfd",
         "autor/director/artista": "kjhgf",
         "genero": "kjhgfds",
-        "categoria": "jh"
+        "categoria": "jh",
+        "ID": "0002"
     }
 ]

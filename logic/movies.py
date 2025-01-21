@@ -18,10 +18,13 @@ def addElementMovies(movies, collections):
     movieDirector = input("Ingrese el/la director(a) de su pelicula: ")
     movieGender = input("Ingrese el genero de su pelicula: ")
     movieCategory = input("Ingrese la categoria de su pelicula(Infantil, Antigua,+18 ,Culto...)")
+    movieID = input("Ingrese un numero de identificacion de 4 digitos unico para su pelicula")
     gh = {
         "titulo" : movieTitle,
         "autor/director/artista" : movieDirector,
-        "genero" : movieGender
+        "genero" : movieGender,
+        "categoria" : movieCategory,
+        "ID" : movieID
     }
     movies.append(gh)
     collections["movies"].append(gh)
@@ -152,4 +155,14 @@ def removeMoviesTitle():
     data = [book for book in data if book.get('titulo') != titleToRemove]
     with open("data/movies.json", "w", encoding="utf-8") as file:
         json.dump(data, file, indent=4, ensure_ascii=False)
-    print(f"El libro con el título '{titleToRemove}' ha sido eliminado.")
+    print(f"La pelicula con el título '{titleToRemove}' ha sido eliminada.")
+
+def removeMoviesID():
+    with open("data/movies.json", "r", encoding="utf-8") as file:
+        data = json.load(file)
+        print (tabulate(data, headers='keys', tablefmt='grid'))
+    titleToRemove = input("¿Qué ID deseas eliminar?: ")
+    data = [book for book in data if book.get('ID') != titleToRemove]
+    with open("data/movies.json", "w", encoding="utf-8") as file:
+        json.dump(data, file, indent=4, ensure_ascii=False)
+    print(f"La pelicula con el ID '{titleToRemove}' ha sido eliminada.")

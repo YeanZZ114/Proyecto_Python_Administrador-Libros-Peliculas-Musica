@@ -1,39 +1,42 @@
 import json
 from tabulate import tabulate
 import os
-
+#definimos la funcion para buscar todos los libros
 def findAllBooks():
     with open ("data/books.json", "r", encoding="utf-8" ) as file:
         data = file.read()
         convertListOrDict= json.loads(data)
         return convertListOrDict  
-    
+#definimos la funcion para guardar todos los libros   
 def saveAllBooks(data):
     with open ("data/books.json", "w") as file:
         convertJSON = json.dumps(data, indent=4, ensure_ascii=False)
         file.write(convertJSON)
         return "se modifico el archivo books.json"
-
+#definimos la funcion para agregar nuevos elementos
 def addElementBooks(books, collections):
     bookTitle = input("Ingrese el titulo de su libro: ")
     bookDirector = input("Ingrese el/la autor(a) de su libro: ")
     bookGender = input("Ingrese el genero de su libro: ")
     bookCategory = input("Ingrese la categoria de su libro(Novela, Biografia, Poesia...)")
+    bookID = input("Ingrese un numero de identificacion de 4 digitos unico para su libro")
     sh = {
         "titulo" : bookTitle,
         "autor/director/artista" : bookDirector,
         "genero" : bookGender,
-        "categoria" : bookCategory
+        "categoria" : bookCategory,
+        "ID" : bookID
     }
     books.append(sh)
     collections["books"].append(sh)
+#definimos la funcion para mirar todos los libros
 def seeAllBooks():
     data = findAllBooks()
     datamodify = []
     for diccionario in data:
            datamodify.append(diccionario)
     print(tabulate(datamodify, headers='keys', tablefmt='grid', numalign="center"))
-
+#definimos la funcion para mostrar en lista los libros
 def listBooks():
         books = findAllBooks("books")
         books1 = []
@@ -43,7 +46,7 @@ def listBooks():
               diccionario.pop("genero")
               books1.append(diccionario)
         print(tabulate(books1, headers="keys", tablefmt="grid"))
-        
+ #buscar en los libros los que tienen la categoria solicitada       
 def searchCategoryBooks():
        while(True):
         file = 'data'
@@ -69,7 +72,7 @@ def searchCategoryBooks():
                 break
         else:
              continue
-         
+ #definimos la funcion para poder editar los titulos de los libros        
 def editBooksElementsTitle():
     while(True):
         with open ("data/books.json", "r", encoding="utf-8" ) as file:
@@ -88,7 +91,7 @@ def editBooksElementsTitle():
             print("El título ha sido actualizado.")
         else:
             print("El título no se encontró en los datos.")
-            
+#definimos la funcion para poder editar los autores de los libros               
 def editBooksElementsA_D_D():
     while(True):
         with open ("data/books.json", "r", encoding="utf-8" ) as file:
@@ -107,7 +110,7 @@ def editBooksElementsA_D_D():
             print("El autor/director/artista ha sido actualizado.")
         else:
             print("El autor/director/artista no se encontró en los datos.")
-            
+ #definimos la funcion para poder editar los generos de los libros              
 def editBooksElementsGender():
     while(True):
         with open ("data/books.json", "r", encoding="utf-8" ) as file:
@@ -126,7 +129,7 @@ def editBooksElementsGender():
             print("El genero ha sido actualizado.")
         else:
             print("El genero no se encontró en los datos.")
-
+#definimos la funcion para poder editar las categorias de los libros   
 def editBooksElementsCategory():
     while(True):
         with open ("data/books.json", "r", encoding="utf-8" ) as file:
@@ -145,7 +148,7 @@ def editBooksElementsCategory():
             print("La categoria ha sido actualizada.")
         else:
             print("La categoria no se encontró en los datos.")
-            
+ #definimos la variable para poder eliminar elementos segun su titulo           
 def removeBooksTitle():
     with open("data/books.json", "r", encoding="utf-8") as file:
         data = json.load(file)
@@ -155,4 +158,14 @@ def removeBooksTitle():
     with open("data/books.json", "w", encoding="utf-8") as file:
         json.dump(data, file, indent=4, ensure_ascii=False)
     print(f"El libro con el título '{titleToRemove}' ha sido eliminado.")
+
+def removeBooksID():
+    with open("data/books.json", "r", encoding="utf-8") as file:
+        data = json.load(file)
+        print (tabulate(data, headers='keys', tablefmt='grid'))
+    titleToRemove = input("¿Qué título deseas eliminar?: ")
+    data = [book for book in data if book.get('ID') != titleToRemove]
+    with open("data/books.json", "w", encoding="utf-8") as file:
+        json.dump(data, file, indent=4, ensure_ascii=False)
+    print(f"El libro con el ID '{titleToRemove}' ha sido eliminado.")
 

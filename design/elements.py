@@ -1,3 +1,4 @@
+#definiendo los menus necesarios en funciones
 def mainMenu():
     opc = int(input('''
                         ===========================================
