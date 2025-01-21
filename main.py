@@ -143,11 +143,59 @@ if __name__=='__main__':
                                         print(f"Error: {e}. Selecciona una opción correcta.")
                                         input("Presiona Enter para continuar...")
                             
-                    #case 5:
-                     #       menuActive = True
-                      #      while menuActive:
-                       #         try:
-                        #            match deleteElementType():
+                    case 5:
+                            menuActive = True
+                            while menuActive:
+                                try:
+                                   match deleteElementType():
+                                         case 1:
+                                               deleteActive = True
+                                               while deleteActive:
+                                                try:
+                                                        match deleteElement():
+                                                                case 1: 
+                                                                    removeBooksTitle()
+                                                                case 2:
+                                                                    pass
+                                                                case 3:
+                                                                    deleteActive = False
+                                                except Exception as e:        
+                                                        print(f"Error: {e}. Selecciona una opción correcta.")
+                                                        input("Presiona Enter para continuar...")
+                                         case 2:
+                                                deleteActive = True
+                                                while deleteActive:
+                                                        try:
+                                                                match deleteElement():
+                                                                        case 1: 
+                                                                                removeMoviesTitle()
+                                                                        case 2:
+                                                                                pass
+                                                                        case 3:
+                                                                                deleteActive = False
+                                                        except Exception as e:        
+                                                                print(f"Error: {e}. Selecciona una opción correcta.")
+                                                                input("Presiona Enter para continuar...")
+                                         case 3:
+                                                deleteActive = True
+                                                while deleteActive:
+                                                        try:
+                                                                match deleteElement():
+                                                                        case 1: 
+                                                                                removeSongsTitle()
+                                                                        case 2:
+                                                                                pass
+                                                                        case 3:
+                                                                                deleteActive = False
+                                                        except Exception as e:        
+                                                                print(f"Error: {e}. Selecciona una opción correcta.")
+                                                                input("Presiona Enter para continuar...")                        
+                                         case 4: menuActive = False
+
+                                except Exception as e:        
+                                         print(f"Error: {e}. Selecciona una opción correcta.")
+                                         input("Presiona Enter para continuar...")
+                                                                         
                     case 6:
                             menuActive = True
                             while menuActive:

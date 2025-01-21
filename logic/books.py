@@ -146,5 +146,13 @@ def editBooksElementsCategory():
         else:
             print("La categoria no se encontró en los datos.")
             
-
+def removeBooksTitle():
+    with open("data/books.json", "r", encoding="utf-8") as file:
+        data = json.load(file)
+        print (tabulate(data, headers='keys', tablefmt='grid'))
+    titleToRemove = input("¿Qué título deseas eliminar?: ")
+    data = [book for book in data if book.get('titulo') != titleToRemove]
+    with open("data/books.json", "w", encoding="utf-8") as file:
+        json.dump(data, file, indent=4, ensure_ascii=False)
+    print(f"El libro con el título '{titleToRemove}' ha sido eliminado.")
 
